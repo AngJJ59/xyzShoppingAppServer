@@ -1,7 +1,9 @@
 package com.xyz.productservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.xyz.productservice.dto.ProductRequest;
@@ -26,12 +28,15 @@ public class ProductService {
 
         productRepository.save(product);
 
-        log.info("Product" + product.getId() + "is saved");
+        log.info("Product is saved");
         return true;
     }
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
-        
     }
+
+    public Optional<Product> getProduct(ObjectId id) {
+        return productRepository.findById(id);
+    } 
 }
